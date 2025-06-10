@@ -104,4 +104,67 @@ Identity-based policies are attached directly to IAM identities (users, groups, 
 - Passed when **assuming a role** or requesting **temporary credentials** via STS.
 - Only effective for the session duration.
 - Further restricts the permissions granted by identity-based policies.
+# AWS IAM Policy Generator
+
+The **AWS IAM Policy Generator** is a web-based tool that helps you create JSON policies for AWS Identity and Access Management (IAM).  
+It simplifies the process of creating **Identity-based** and **Resource-based** policies by providing a user-friendly interface.
+
+**Official URL:** [AWS IAM Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+
+---
+
+## Purpose
+
+- To create **custom IAM policies** without manually writing JSON.
+- Supports creation of policies for **users, groups, roles,** and **resource-based** policies.
+- Ensures policies follow AWS syntax and best practices.
+
+---
+
+## How to Use the AWS IAM Policy Generator
+
+### Step 1: Select Policy Type
+
+- **IAM Policy** (Identity-based policy)
+- **S3 Bucket Policy** (Resource-based policy for S3)
+- **SNS Topic Policy** (Resource-based policy for SNS)
+- **SQS Queue Policy** (Resource-based policy for SQS)
+
+### Step 2: Define Policy Details
+
+- **Effect:** Allow or Deny
+- **AWS Service:** Choose the AWS service (e.g., S3, EC2, Lambda)
+- **Actions:** Select actions (e.g., `ListBucket`, `PutObject`)
+- **Amazon Resource Name (ARN):** Specify the resource(s) the policy applies to (use wildcards if needed)
+
+### Step 3: Add Statement
+
+- Add multiple statements to define different permissions within the same policy.
+
+### Step 4: Generate Policy
+
+- Click **Generate Policy** to create the JSON document.
+- Copy the generated JSON to use in IAM console, CLI, or SDKs.
+
+---
+
+## Sample Output: IAM Policy JSON
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::example-bucket",
+        "arn:aws:s3:::example-bucket/*"
+      ]
+    }
+  ]
+}
 
